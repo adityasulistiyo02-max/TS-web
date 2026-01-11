@@ -4,8 +4,8 @@ import { createClient } from '@supabase/supabase-js';
 // For this demo, we will check for environment variables or default to empty to prevent crash
 // Users must provide their own keys to make the DB features work.
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://xyzcompany.supabase.co';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'public-anon-key';
+const supabaseUrl = process.env.SUPABASE_URL || 'https://xyzcompany.supabase.co';
+const supabaseKey = process.env.SUPABASE_ANON_KEY || 'public-anon-key';
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 

@@ -114,9 +114,9 @@ const Studio: React.FC = () => {
           <h1 className="text-5xl font-sans font-black mb-2 tracking-tighter">RESTRICTED</h1>
           <div className="h-1 w-full bg-white mb-6"></div>
           <p className="font-mono text-sm mb-8 text-left leading-relaxed">
-            {'>'}  ACCESS_DENIED<br/>
-            {'>'}  SECURITY_LEVEL: ULTRA<br/>
-            {'>'}  IDENTIFICATION_REQUIRED
+            > ACCESS_DENIED<br/>
+            > SECURITY_LEVEL: ULTRA<br/>
+            > IDENTIFICATION_REQUIRED
           </p>
           <button 
             onClick={handleLogin}
@@ -168,7 +168,7 @@ const Studio: React.FC = () => {
                     System_Status
                 </div>
                 <div className={`font-mono text-sm ${loading ? 'animate-pulse text-high-yellow' : 'text-gray-400'}`}>
-                    {'>'}  {statusMessage}
+                    > {statusMessage}
                     <span className="animate-pulse">_</span>
                 </div>
             </div>
