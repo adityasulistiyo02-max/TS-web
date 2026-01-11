@@ -53,7 +53,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="bg-black border-b-2 border-black">
+    <div className="bg-black">
         {/* Bento / Masonry Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2px] bg-black border-b-[2px] border-black">
             {posts.map((post, index) => {
@@ -100,7 +100,8 @@ const Home: React.FC = () => {
             })}
         </div>
         
-        <div className="bg-high-yellow p-12 text-center border-t-2 border-black">
+        {/* Full width breakout section */}
+        <div className="bg-high-yellow p-12 text-center border-y-2 border-black -mx-[calc(0.5rem+2px)] md:-mx-[calc(1rem+2px)]">
             <Link to="/archive" className="inline-block text-2xl font-bold font-mono border-2 border-black bg-white px-8 py-4 hover:bg-black hover:text-white transition-colors shadow-[6px_6px_0px_0px_#000000]">
                 BROWSE FULL ARCHIVE
             </Link>
