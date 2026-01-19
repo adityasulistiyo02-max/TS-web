@@ -129,9 +129,9 @@ const Studio: React.FC = () => {
           <h1 className="text-5xl font-sans font-black mb-2 tracking-tighter">RESTRICTED</h1>
           <div className="h-1 w-full bg-white mb-6"></div>
           <p className="font-mono text-sm mb-8 text-left leading-relaxed">
-            > ACCESS_DENIED<br/>
-            > SECURITY_LEVEL: ULTRA<br/>
-            > IDENTIFICATION_REQUIRED
+            {'>'} ACCESS_DENIED<br/>
+            {'>'} SECURITY_LEVEL: ULTRA<br/>
+            {'>'} IDENTIFICATION_REQUIRED
           </p>
           
           <form onSubmit={handleLogin} className="space-y-4 text-left">
@@ -210,7 +210,7 @@ const Studio: React.FC = () => {
                     System_Status
                 </div>
                 <div className={`font-mono text-sm ${loading ? 'animate-pulse text-high-yellow' : 'text-gray-400'}`}>
-                    > {statusMessage}
+                    {'>'} {statusMessage}
                     <span className="animate-pulse">_</span>
                 </div>
             </div>
@@ -229,8 +229,8 @@ const Studio: React.FC = () => {
                         <option value="Event">EVENT</option>
                         <option value="Journal">JOURNAL</option>
                     </select>
-                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                        ▼
+                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-white">
+                        &#9660;
                     </div>
                 </div>
             </div>
