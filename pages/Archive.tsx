@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { Post, Category } from '../types';
 
 const categories: Category[] = ['All', 'Music', 'Visual', 'Event'];
 
 const Archive: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState<Category>('All');
   const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam && categories.includes(categoryParam as any)) {
+      setActiveCategory(categoryParam as Category);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     // Mock fetch or Real Fetch
@@ -27,6 +35,7 @@ const Archive: React.FC = () => {
                 title: `ARCHIVE ENTRY #00${i} - ${activeCategory === 'All' ? 'GENERAL' : activeCategory.toUpperCase()} TOPIC`,
                 slug: `archive-${i}`,
                 category: activeCategory === 'All' ? (['Music', 'Visual', 'Event'][i % 3]) : activeCategory,
+                author: `Agent_00${i}`,
                 content: '', excerpt: '', cover_image_url: '', is_published: true
              }));
              setPosts(mock as Post[]);
@@ -67,6 +76,7 @@ const Archive: React.FC = () => {
                     <th className="p-4 w-32">Date</th>
                     <th className="p-4">Title</th>
                     <th className="p-4 w-32">Category</th>
+                    <th className="p-4 w-32">Writer</th>
                     <th className="p-4 w-24 text-right">Action</th>
                 </tr>
             </thead>
@@ -84,6 +94,9 @@ const Archive: React.FC = () => {
                             <span className="border border-black px-2 py-1 text-xs bg-white">
                                 {post.category}
                             </span>
+                        </td>
+                        <td className="p-4 text-sm opacity-80">
+                            {post.author || 'UNKNOWN'}
                         </td>
                         <td className="p-4 text-right">
                             <Link to={`/article/${post.slug}`} className="text-2xl group-hover:translate-x-1 inline-block transition-transform">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { Post } from '../types';
-import { Share2, Clock, Tag } from 'lucide-react';
+import { Share2, Clock, Tag, User } from 'lucide-react';
 
 const mockContent = `
 # The Raw Aesthetic of Now
@@ -50,7 +50,8 @@ const Article: React.FC = () => {
             title: slug?.replace('-', ' ').toUpperCase() || "UNKNOWN ARTICLE",
             slug: slug || "unknown",
             created_at: new Date().toISOString(),
-            category: "Deep Dive",
+            category: "Music",
+            author: "Tandang_Admin",
             excerpt: "A deep look into the subject.",
             content: mockContent,
             cover_image_url: "https://picsum.photos/1200/800",
@@ -75,20 +76,27 @@ const Article: React.FC = () => {
              <Link to="/archive" className="font-mono text-xs underline hover:bg-black hover:text-white transition-colors">← BACK TO ARCHIVE</Link>
           </div>
           
-          <span className="inline-block bg-black text-high-yellow px-3 py-1 font-mono text-sm uppercase tracking-widest mb-4">
+          <Link 
+            to={`/archive?category=${post.category}`}
+            className="inline-block bg-black text-high-yellow px-3 py-1 font-mono text-sm uppercase tracking-widest mb-4 border border-transparent hover:bg-white hover:text-black hover:border-black transition-all"
+          >
             {post.category}
-          </span>
+          </Link>
           
           <h1 className="text-5xl md:text-6xl font-sans font-bold leading-[0.9] uppercase mb-8 break-words">
             {post.title}
           </h1>
 
           <div className="font-mono text-sm space-y-4 border-t border-black pt-4">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 font-bold text-lg">
+                <User size={18} />
+                <span className="uppercase">{post.author || 'UNKNOWN_AGENT'}</span>
+            </div>
+            <div className="flex items-center gap-2 opacity-70">
               <Clock size={16} />
               <span>{new Date(post.created_at).toLocaleDateString('en-GB')}</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 opacity-70">
               <Tag size={16} />
               <span>{post.slug}</span>
             </div>

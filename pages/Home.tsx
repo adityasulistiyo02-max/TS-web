@@ -5,12 +5,12 @@ import { Post } from '../types';
 import { ArrowUpRight, Loader2 } from 'lucide-react';
 
 const mockPosts: Post[] = [
-  { id: 1, created_at: new Date().toISOString(), title: "NOISE ARCHITECTURE", slug: "noise-architecture", content: "...", excerpt: "Exploring the brutalist sounds of downtown Jakarta.", cover_image_url: "https://picsum.photos/800/800?random=1", category: "Music", is_published: true },
-  { id: 2, created_at: new Date().toISOString(), title: "VISUAL RIOT 2024", slug: "visual-riot", content: "...", excerpt: "A retrospective on photocopy art culture.", cover_image_url: "https://picsum.photos/600/800?random=2", category: "Visual", is_published: true },
-  { id: 3, created_at: new Date().toISOString(), title: "UNDERGROUND TYPES", slug: "underground-types", content: "...", excerpt: "Why Helvetica is dead and what comes next.", cover_image_url: "https://picsum.photos/800/600?random=3", category: "Design", is_published: true },
-  { id: 4, created_at: new Date().toISOString(), title: "SYNTH WAVES", slug: "synth-waves", content: "...", excerpt: "Analog modular synthesis in the digital age.", cover_image_url: "https://picsum.photos/700/700?random=4", category: "Music", is_published: true },
-  { id: 5, created_at: new Date().toISOString(), title: "CONCRETE DREAMS", slug: "concrete-dreams", content: "...", excerpt: "Brutalism in web design.", cover_image_url: "https://picsum.photos/900/600?random=5", category: "Visual", is_published: true },
-  { id: 6, created_at: new Date().toISOString(), title: "GLITCH PROTOCOL", slug: "glitch-protocol", content: "...", excerpt: "Embracing errors as an aesthetic choice.", cover_image_url: "https://picsum.photos/600/900?random=6", category: "Event", is_published: true },
+  { id: 1, created_at: new Date().toISOString(), title: "NOISE ARCHITECTURE", slug: "noise-architecture", content: "...", excerpt: "Exploring the brutalist sounds of downtown Jakarta.", cover_image_url: "https://picsum.photos/800/800?random=1", category: "Music", author: "Rizky Noise", is_published: true },
+  { id: 2, created_at: new Date().toISOString(), title: "VISUAL RIOT 2024", slug: "visual-riot", content: "...", excerpt: "A retrospective on photocopy art culture.", cover_image_url: "https://picsum.photos/600/800?random=2", category: "Visual", author: "Sarah Glitch", is_published: true },
+  { id: 3, created_at: new Date().toISOString(), title: "UNDERGROUND TYPES", slug: "underground-types", content: "...", excerpt: "Why Helvetica is dead and what comes next.", cover_image_url: "https://picsum.photos/800/600?random=3", category: "Design", author: "Type_Master_99", is_published: true },
+  { id: 4, created_at: new Date().toISOString(), title: "SYNTH WAVES", slug: "synth-waves", content: "...", excerpt: "Analog modular synthesis in the digital age.", cover_image_url: "https://picsum.photos/700/700?random=4", category: "Music", author: "Modular Mind", is_published: true },
+  { id: 5, created_at: new Date().toISOString(), title: "CONCRETE DREAMS", slug: "concrete-dreams", content: "...", excerpt: "Brutalism in web design.", cover_image_url: "https://picsum.photos/900/600?random=5", category: "Visual", author: "Brutal_Bot", is_published: true },
+  { id: 6, created_at: new Date().toISOString(), title: "GLITCH PROTOCOL", slug: "glitch-protocol", content: "...", excerpt: "Embracing errors as an aesthetic choice.", cover_image_url: "https://picsum.photos/600/900?random=6", category: "Event", author: "System Admin", is_published: true },
 ];
 
 const Home: React.FC = () => {
@@ -91,7 +91,7 @@ const Home: React.FC = () => {
                                     {post.title}
                                 </h2>
                                 <p className="font-mono text-xs text-white bg-black/50 inline-block px-1 backdrop-blur-sm">
-                                    {new Date(post.created_at).toLocaleDateString()}
+                                    {new Date(post.created_at).toLocaleDateString()} // {post.author || 'UNKNOWN'}
                                 </p>
                             </div>
                         </div>

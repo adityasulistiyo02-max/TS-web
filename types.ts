@@ -7,6 +7,7 @@ export interface Post {
   excerpt: string | null;
   cover_image_url: string | null;
   category: 'Music' | 'Visual' | 'Event' | string;
+  author?: string;
   is_published: boolean;
 }
 

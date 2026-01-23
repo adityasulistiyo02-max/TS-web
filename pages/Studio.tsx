@@ -20,6 +20,7 @@ const Studio: React.FC = () => {
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [category, setCategory] = useState('Musik');
+  const [author, setAuthor] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -28,6 +29,10 @@ const Studio: React.FC = () => {
     // Check auth session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
+      if (session?.user?.email) {
+        // Default author to email prefix if not set
+        setAuthor(session.user.email.split('@')[0].toUpperCase());
+      }
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -98,6 +103,7 @@ const Studio: React.FC = () => {
                 title,
                 slug,
                 category,
+                author,
                 excerpt,
                 content,
                 cover_image_url: imageUrl,
@@ -129,9 +135,9 @@ const Studio: React.FC = () => {
           <h1 className="text-5xl font-sans font-black mb-2 tracking-tighter">RESTRICTED</h1>
           <div className="h-1 w-full bg-white mb-6"></div>
           <p className="font-mono text-sm mb-8 text-left leading-relaxed">
-            {'>'} ACCESS_DENIED<br/>
-            {'>'} SECURITY_LEVEL: ULTRA<br/>
-            {'>'} IDENTIFICATION_REQUIRED
+            > ACCESS_DENIED<br/>
+            > SECURITY_LEVEL: ULTRA<br/>
+            > IDENTIFICATION_REQUIRED
           </p>
           
           <form onSubmit={handleLogin} className="space-y-4 text-left">
@@ -210,9 +216,22 @@ const Studio: React.FC = () => {
                     System_Status
                 </div>
                 <div className={`font-mono text-sm ${loading ? 'animate-pulse text-high-yellow' : 'text-gray-400'}`}>
-                    {'>'} {statusMessage}
+                    > {statusMessage}
                     <span className="animate-pulse">_</span>
                 </div>
+            </div>
+
+            {/* Author */}
+            <div className="space-y-2">
+                <label className="block text-xs uppercase tracking-widest text-gray-400">Identity_Signature (Author)</label>
+                <input 
+                    type="text" 
+                    value={author}
+                    onChange={e => setAuthor(e.target.value)}
+                    className="w-full bg-transparent border-b-2 border-white/30 text-white p-2 font-mono text-sm focus:border-high-yellow focus:text-high-yellow focus:outline-none rounded-none"
+                    placeholder="AGENT_NAME"
+                    required
+                />
             </div>
 
             {/* Category */}
@@ -229,8 +248,8 @@ const Studio: React.FC = () => {
                         <option value="Event">EVENT</option>
                         <option value="Journal">JOURNAL</option>
                     </select>
-                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-white">
-                        &#9660;
+                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        ▼
                     </div>
                 </div>
             </div>
