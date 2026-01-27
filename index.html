@@ -35,17 +35,34 @@
         background: white;
         border: 2px solid black;
       }
-      .marquee-container {
+      
+      /* Seamless Marquee CSS */
+      .marquee-wrapper {
+        display: flex;
         overflow: hidden;
-        white-space: nowrap;
+        user-select: none;
+        width: 100%;
       }
       .marquee-content {
-        display: inline-block;
-        animation: marquee 20s linear infinite;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-around;
+        min-width: 100%;
+        gap: 0; 
+        animation: scroll 20s linear infinite;
       }
-      @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+      @keyframes scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-100%); }
+      }
+      
+      /* Hide scrollbar for nav */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
       }
     </style>
   <script type="importmap">
@@ -63,5 +80,6 @@
 </head>
   <body class="bg-raw-paper text-black antialiased">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

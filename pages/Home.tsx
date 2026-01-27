@@ -52,8 +52,55 @@ const Home: React.FC = () => {
     );
   }
 
+  const marqueeText = "TANDANG SANGAR /// EXPERIMENTAL MEDIA /// SOLO - JOGJA - WORLDWIDE /// RAW AESTHETICS /// TANDANG SANGAR /// LISTEN TO THE NOISE /// ";
+  const marqueeText2 = " /// LATEST DROPS /// UNDERGROUND MOVEMENTS /// DIGITAL BRUTALISM /// LATEST DROPS /// UNDERGROUND MOVEMENTS /// DIGITAL BRUTALISM /// ";
+
   return (
     <div className="bg-black">
+        {/* Top Marquee */}
+        <div className="bg-high-yellow border-b-2 border-black py-2 marquee-wrapper">
+             <div className="marquee-content font-mono font-bold text-sm md:text-base uppercase tracking-widest">
+                <span>{marqueeText}</span>
+                <span>{marqueeText}</span>
+            </div>
+             <div className="marquee-content font-mono font-bold text-sm md:text-base uppercase tracking-widest" aria-hidden="true">
+                <span>{marqueeText}</span>
+                <span>{marqueeText}</span>
+            </div>
+        </div>
+
+        {/* Hero Banner */}
+        <div className="relative h-[50vh] md:h-[70vh] border-b-2 border-black overflow-hidden group">
+            <img 
+                src="https://picsum.photos/1920/1080?grayscale&blur=2" 
+                alt="Hero" 
+                className="w-full h-full object-cover grayscale contrast-125 transition-transform duration-[20s] ease-linear scale-100 group-hover:scale-110"
+            />
+            {/* Overlay Pattern */}
+            <div className="absolute inset-0 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzjwqgABJChBCTAwyDAwMAAAiuYL5W2zCwAAAAAASUVORK5CYII=')] opacity-30"></div>
+            
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                <h1 className="text-[12vw] md:text-[10vw] font-black text-white leading-[0.8] tracking-tighter text-center mix-blend-difference select-none pointer-events-none">
+                    VISUAL<br/>CULTURE
+                </h1>
+                <Link to="/archive" className="mt-8 bg-white text-black font-mono font-bold text-lg md:text-xl px-8 py-3 border-4 border-transparent hover:border-black hover:bg-high-yellow transition-all uppercase shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                    Explore Now
+                </Link>
+            </div>
+        </div>
+
+        {/* Bottom Marquee - NOW GREEN */}
+        <div className="bg-high-yellow border-b-2 border-black py-2 marquee-wrapper">
+             <div className="marquee-content font-mono font-bold text-sm md:text-base uppercase tracking-widest text-black">
+                <span>{marqueeText2}</span>
+                <span>{marqueeText2}</span>
+            </div>
+             <div className="marquee-content font-mono font-bold text-sm md:text-base uppercase tracking-widest text-black" aria-hidden="true">
+                <span>{marqueeText2}</span>
+                <span>{marqueeText2}</span>
+            </div>
+        </div>
+
         {/* Bento / Masonry Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2px] bg-black border-b-[2px] border-black">
             {posts.map((post, index) => {
